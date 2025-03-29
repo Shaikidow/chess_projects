@@ -579,6 +579,20 @@ public class Board {
                 continue;
             }
 
+            if (fullNotation.equals("list")) {
+
+                System.out.println("\nNon-move commands:\ndraw - offer a draw\nresign - resign the game");
+                System.out.println();
+
+                if (whiteToMove) {
+                    System.out.print("White to move: ");
+                } else {
+                    System.out.print("Black to move: ");
+                }
+
+                continue;
+            }
+
             if (fullNotation.equals("0-0") || fullNotation.equals("O-O")) {
 
                 if (isLegalCastling("short")) {
@@ -638,7 +652,8 @@ public class Board {
             }
 
                 System.out.println("\nInvalid or illegal move!");
-                System.out.print("Play a different move\n(format = piece notation + hyphen + square notation): ");
+                System.out.print("Type \"list\" for a list of commands, or play a different move" +
+                                 "\n(format = piece notation + hyphen + square notation): ");
         }
 
         if (whiteToMove) {
