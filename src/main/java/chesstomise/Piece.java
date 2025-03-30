@@ -110,6 +110,9 @@ public abstract class Piece {
 
     protected void moveTo(int position) {
 
+        Board.getSquareByPosition(this.position).setEmpty(true);
+        Board.getSquareByPosition(position).setEmpty(false);
+
         this.position = position;
         this.relativeNotation = this.relativeNotation.charAt(0)
                                   + Board.getSquareByPosition(position).getNotation();

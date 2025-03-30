@@ -132,10 +132,12 @@ public class Pawn extends Piece {
 
                 if (this.isWhite) {
 
+                    Board.getSquareByPosition(position - 10).setEmpty(true);
                     Board.getPieceByPosition(position - 10).banish();
 
                 } else {
 
+                    Board.getSquareByPosition(position + 10).setEmpty(true);
                     Board.getPieceByPosition(position + 10).banish();
                 }
             }

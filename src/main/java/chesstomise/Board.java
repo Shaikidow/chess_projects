@@ -466,18 +466,6 @@ public class Board {
 
     public static void fillSquares() {
 
-        for (int i = 0; i < squares.size(); i++) {
-
-            squares.get(i).setEmpty(true); // could've been switched through moveTo() instead, but this worked out, too!
-
-            for (int j = 0; j < pieces.size(); j++) {
-
-                if (squares.get(i).getPosition() == pieces.get(j).getPosition()) {
-                    squares.get(i).setEmpty(false);
-                }
-            }
-        }
-
         int rankStart = 0;
         int rankEnd = 8;
 
