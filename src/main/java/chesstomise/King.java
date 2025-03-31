@@ -14,7 +14,7 @@ public class King extends Piece {
         this.relativeNotation = this.graphicNotation.toUpperCase().trim();
     }
 
-    public boolean notInCheckOnPosition(int position) { // best reverse this method for the sake of clarity
+    public boolean isInCheckOnPosition(int position) {
 
         for (int i = 0; i < Board.getPieces().size(); i++) {
 
@@ -27,7 +27,7 @@ public class King extends Piece {
                             Board.getPieces().get(i).position - position == 11) {
 
                         if (Board.getPieces().get(i) instanceof Pawn) {
-                            return false;
+                            return true;
                         }
                     }
 
@@ -38,7 +38,7 @@ public class King extends Piece {
                             position - Board.getPieces().get(i).position == 11) {
 
                         if (Board.getPieces().get(i) instanceof Pawn) {
-                            return false;
+                            return true;
                         }
                     }
                 }
@@ -57,7 +57,7 @@ public class King extends Piece {
                     Board.getSquareByPosition(this.position).setEmpty(false);
                     Board.getSquareByPosition(position).setEmpty(oldVacancy);
 
-                    return false;
+                    return true;
                 }
 
                 Board.getSquareByPosition(this.position).setEmpty(false);
@@ -65,7 +65,7 @@ public class King extends Piece {
             }
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class King extends Piece {
 
         if (this.isValidRange(position)) {
 
-            return this.notInCheckOnPosition(position);
+            return !this.isInCheckOnPosition(position);
         }
         return false;
     }

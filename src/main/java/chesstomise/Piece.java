@@ -40,7 +40,7 @@ public abstract class Piece {
     public Piece() {
     }
 
-    protected boolean doesNotDiscoverCheckOnOwnKing(int position) {
+    protected boolean discoversCheckOnOwnKing(int position) {
 
         boolean oldVacancy = Board.getSquareByPosition(position).isEmpty(); // necessary because of en passant exception
 
@@ -68,7 +68,7 @@ public abstract class Piece {
                         Board.getSquareByPosition(position).setEmpty(oldVacancy);
                         Board.getSquareByPosition(this.position).setEmpty(false);
 
-                        return false;
+                        return true;
                     }
                 }
             }
@@ -81,7 +81,7 @@ public abstract class Piece {
         Board.getSquareByPosition(position).setEmpty(oldVacancy);
         Board.getSquareByPosition(this.position).setEmpty(false);
 
-        return true;
+        return false;
     }
 
     protected boolean isValidRange(int position) {
@@ -102,7 +102,7 @@ public abstract class Piece {
     protected boolean isLegalMove(int position) {
 
         if (this.isValidRange(position)) {
-            return this.doesNotDiscoverCheckOnOwnKing(position);
+            return !this.discoversCheckOnOwnKing(position);
         }
 
         return false;
@@ -127,7 +127,7 @@ public abstract class Piece {
             return false;
         }
 
-        return doesNotDiscoverCheckOnOwnKing(position);
+        return !discoversCheckOnOwnKing(position);
     }
 
     protected void banish() {

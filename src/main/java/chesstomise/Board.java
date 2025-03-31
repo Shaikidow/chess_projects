@@ -783,7 +783,7 @@ public class Board {
 
                     for (int j = pieces.get(i).position; j <= pieces.get(i).position / 10 * 10 + 7; j++) {
 
-                        if (!((King) pieces.get(i)).notInCheckOnPosition(j)) {
+                        if (((King) pieces.get(i)).isInCheckOnPosition(j)) {
                             return false;
                         }
 
@@ -855,7 +855,7 @@ public class Board {
 
                     for (int j = pieces.get(i).position; j >= pieces.get(i).position / 10 * 10 + 3; j--) {
 
-                        if (!((King) pieces.get(i)).notInCheckOnPosition(j)) {
+                        if (((King) pieces.get(i)).isInCheckOnPosition(j)) {
                             return false;
                         }
 
@@ -955,7 +955,7 @@ public class Board {
                     &&
                     pieces.get(i).isWhite == whiteToMove) {
 
-                return (!((King) pieces.get(i)).notInCheckOnPosition(pieces.get(i).position)); // only works with 1 King
+                return (((King) pieces.get(i)).isInCheckOnPosition(pieces.get(i).position)); // only works with one King
             }
         }
 
